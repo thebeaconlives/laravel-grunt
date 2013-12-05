@@ -70,6 +70,10 @@ module.exports = function (grunt) {
 				files: ['<%= options.js.files %>', '<%= options.css.files %>', '<%= options.less.base %>/*.less',
 				 '<%= options.sass.base %>/*.sass', '<%= options.stylus.base %>/*.styl',
 				 '!<%= option.js.min %>', '!<%= options.less.compiled %>', '!<%= options.sass.compiled %>', '!<%= options.stylus.compiled %>']
+			},
+			
+			handlebars: {
+				template_folder: '{{handlebars_templates}}'
 			}
 		},
 
@@ -184,6 +188,22 @@ module.exports = function (grunt) {
 			},
 			files: '<%= options.watch.files %>',
 			tasks: ['default', 'notify:watch']
+		},
+		//Compile Handlebars templates
+		handlebars: {
+			compile: {
+				'<%= options.js.files %>' : ['<%= options.handlebars.template_folder %>']
+			},
+			options: {
+				namespace: '{{handlebars_namespace}}',
+				wrapped: true,
+				processName: function(filename) {
+					var parts = '<%= options.handlebars.template_folder %>'.split('*'),
+					    regex1 = new RegExp('^' + parts[0], 'gi'),
+					    regex2 = new RegExp('\\' + parts[1] + '$', 'gi');
+					return filename.replace(regex1).replace(regex2);
+				}
+			}
 		}
 
 
@@ -202,6 +222,7 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-notify');
+	grunt.loadNpmTasks('grunt-contrib-handlebars');
 
 	// Register tasks
 	grunt.registerTask('default', ['clean:all', {{tasks}} 'concat:css', 'concat:js', 'cssmin', 'uglify', 'clean:concat']); // Default task
