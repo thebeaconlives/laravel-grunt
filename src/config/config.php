@@ -181,4 +181,6 @@ return array(
 		"bootstrap" => "~3"
 	),
 
+	"handlebars_templates" => "assets/templates"
+
 );
