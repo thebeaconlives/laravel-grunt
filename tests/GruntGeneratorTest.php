@@ -1,8 +1,8 @@
-<?php namespace JasonNZ\LaravelGrunt;
+<?php namespace TheBeaconLives\LaravelGrunt;
 
 use \Mockery as m;
-use \JasonNZ\LaravelGrunt\Grunt\Gruntfile;
-use \JasonNZ\LaravelGrunt\Grunt\GruntGenerator;
+use \TheBeaconLives\LaravelGrunt\Grunt\Gruntfile;
+use \TheBeaconLives\LaravelGrunt\Grunt\GruntGenerator;
 
 class GruntGeneratorTest extends  \PHPUnit_Framework_TestCase {
 
@@ -10,7 +10,7 @@ class GruntGeneratorTest extends  \PHPUnit_Framework_TestCase {
 	{
 		// Mock the filesyste, config and gruntfile
 		$this->config = m::mock('Illuminate\Config\Repository');
-		$this->gruntfile = m::mock('JasonNZ\LaravelGrunt\Grunt\Gruntfile');
+		$this->gruntfile = m::mock('TheBeaconLives\LaravelGrunt\Grunt\Gruntfile');
 		$this->filesystem = m::mock('Illuminate\Filesystem\Filesystem');
 
 		// Create a new GruntGenerator

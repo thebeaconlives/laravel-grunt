@@ -1,8 +1,8 @@
-<?php namespace JasonNZ\LaravelGrunt;
+<?php namespace TheBeaconLives\LaravelGrunt;
 
 use \Mockery as m;
-use \JasonNZ\LaravelGrunt\Bower\Bowerfile;
-use \JasonNZ\LaravelGrunt\Bower\BowerGenerator;
+use \TheBeaconLives\LaravelGrunt\Bower\Bowerfile;
+use \TheBeaconLives\LaravelGrunt\Bower\BowerGenerator;
 
 class BowerGeneratorTest extends  \PHPUnit_Framework_TestCase {
 
@@ -10,7 +10,7 @@ class BowerGeneratorTest extends  \PHPUnit_Framework_TestCase {
 	{
 		// Mock the filesystem, config and bowerfile
 		$this->config = m::mock('Illuminate\Config\Repository');
-		$this->bowerfile = m::mock('JasonNZ\LaravelGrunt\Bower\Bowerfile');
+		$this->bowerfile = m::mock('TheBeaconLives\LaravelGrunt\Bower\Bowerfile');
 		$this->filesystem = m::mock('Illuminate\Filesystem\Filesystem');
 
 		// Create a new GruntGenerator

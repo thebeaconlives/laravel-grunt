@@ -1,11 +1,10 @@
 {
     "name": "laravel-grunt-workflow",
     "description": "A Laravel 4 Grunt Workflow",
-    "homepage": "https://github.com/JasonMortonNZ/laravel-grunt",
+    "homepage": "https://github.com/thebeaconlives/laravel-grunt",
     "version": "0.0.1",
     "author": {
-        "name": "JasonMortonNZ",
-        "url": "https://twitter.com/jasonmortonnz",
+        "name": "TheBeaconLives",
         "role": "Developer"
     },
     "devDependencies": {

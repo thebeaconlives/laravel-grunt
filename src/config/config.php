@@ -51,6 +51,8 @@ return array(
 		'assets/css/style_two.css'
 	),
 
+	'css_target_file' => 'styles.min.css',
+
 	/*
 	|--------------------------------------------------------------------------
 	| The JavaScript Path
@@ -76,6 +78,8 @@ return array(
 		'assets/js/script_one.js',
 		'assets/js/script_two.js'
 	),
+
+	'js_target_file' => 'scripts.min.js',
 
 	/*
 	|--------------------------------------------------------------------------

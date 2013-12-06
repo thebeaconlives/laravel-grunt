@@ -1,6 +1,14 @@
-# Laravel 4 + Grunt Asset Workflow Package - BETA
+This package was adapted from the jason-morton-nz/laravel-grunt package to add handlebars support and add global functions for including scripts and styles into your views
 
-**Please help me by trialing out my package and providing feedback**
+### How to insert stylesheet and scripts
+
+`<?php grunt_stylesheet() ?>`
+
+Includes the main stylesheet specified in the css_target_file option in the config.  Pass in a filename as a parameter to link to another stylesheet in the css_path folder
+
+`<?php grunt_script() ?>`
+
+Includes the main javascript file specified in the js_target_file option in the config file.  Pass in a filename as a parameter to link to another script in the js_files path
 
 ## Contents
 
@@ -25,15 +33,19 @@ The package can do the following:
 - ** NOW include support for bower! **
 
 ### Installation
-To install the 'Laravel 4 + Grunt Asset Worklow Package' simply add the following to your composer.json `"require-dev"` array:
+To install the 'Laravel 4 + Grunt Asset Worklow Package' run the following command:
 
-`"jason-morton-nz/laravel-grunt": "dev-master"`
+`composer require thebeaconlives/laravel-grunt`
+
+You can also add the following to your composer.json `"require-dev"` array:
+
+`"thebeaconlives/laravel-grunt": "dev-master"`
 
 Then run `composer update --dev` in your terminal.
 
 Next, add the following line to the end of you `app/config.php` "providers array":
 
-`'JasonNZ\LaravelGrunt\LaravelGruntServiceProvider',`
+`'TheBeaconLives\LaravelGrunt\LaravelGruntServiceProvider',`
 
 Finally, run the following command to add the configuration file to your `app/config/packages` directory:
 
@@ -41,11 +53,9 @@ Finally, run the following command to add the configuration file to your `app/co
 
 
 ## Configuration
-You can configure many of the settings for this package, by traversing to it's configuration file. This file is located in you project's vendor directory, as below:
+You can configure many of the settings for this package, by copying the config file to your app folder with the following command:
 
-	`app/config/packages/jason-nz/laravel-grunt/config.php`
-
-This file is heavily commented, so hopefully each setting should be self explainatory.
+	`php artisan config:publish thebeaconlives/laravel-grunt`
 
 **Note:** please try not to edit the `package.json` and `grunfile.js` directly. Instead make your required changes in the config.php file, then run `php artisan grunt:setup` to apply the changes.
 

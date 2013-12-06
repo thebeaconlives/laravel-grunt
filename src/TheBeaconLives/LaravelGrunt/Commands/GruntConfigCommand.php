@@ -1,4 +1,4 @@
-<?php namespace JasonNZ\LaravelGrunt\Commands;
+<?php namespace TheBeaconLives\LaravelGrunt\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;

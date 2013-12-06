@@ -1,9 +1,9 @@
-<?php namespace JasonNZ\LaravelGrunt\Bower;
+<?php namespace TheBeaconLives\LaravelGrunt\Bower;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Config\Repository as Config;
-use JasonNZ\LaravelGrunt\Bower\Bowerfile;
-use JasonNZ\LaravelGrunt\GeneratorInterface;
+use TheBeaconLives\LaravelGrunt\Bower\Bowerfile;
+use TheBeaconLives\LaravelGrunt\GeneratorInterface;
 
 class BowerGenerator implements GeneratorInterface {
 

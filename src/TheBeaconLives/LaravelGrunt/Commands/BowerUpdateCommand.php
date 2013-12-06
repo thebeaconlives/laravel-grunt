@@ -1,4 +1,4 @@
-<?php namespace JasonNZ\LaravelGrunt\Commands;
+<?php namespace TheBeaconLives\LaravelGrunt\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
@@ -6,31 +6,26 @@ use Illuminate\Config\Repository as Config;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
-class GruntWatchCommand extends Command {
+class BowerUpdateCommand extends Command {
 
 	/**
 	 * The console command name
 	 * 
 	 * @var string
 	 */
-	protected $name = 'grunt:watch';
+	protected $name = 'bower:update';
 
 	/**
-	 * The console command description
+	 * The consolse command description
 	 * 
 	 * @var string
 	 */
-	protected $description = 'Run grunt watch';
+	protected $description = 'Run bower update';
 
-	/**
-	 * Fire the command
-	 * 
-	 * @return void
-	 */
 	public function fire()
 	{
-		$this->info('Running grunt watch....');
-		shell_exec('grunt watch');
+		$this->info('Updating bower dependencies...');
+		shell_exec('bower update');
 	}
 
 }

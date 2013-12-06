@@ -1,11 +1,11 @@
-<?php namespace JasonNZ\LaravelGrunt\Commands;
+<?php namespace TheBeaconLives\LaravelGrunt\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Config\Repository as Config;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
-use JasonNZ\LaravelGrunt\GeneratorInterface;
+use TheBeaconLives\LaravelGrunt\GeneratorInterface;
 
 class GruntSetupCommand extends Command {
 
@@ -121,6 +121,7 @@ class GruntSetupCommand extends Command {
 	{
 		// Do they want preprocessing?
 		$this->wantPreprocessing();
+		$this->wantHandlebars();
 	}
 
 	/**
@@ -142,6 +143,14 @@ class GruntSetupCommand extends Command {
 			}
 
 			$this->plugins[] = $preprocessor;
+		}
+	}
+
+	protected function wantHandlebars()
+	{
+		if ($this->confirm('Do you require handlebars? [yes|no]', false))
+		{
+			$this->plugins[] = 'handlebars';
 		}
 	}
 

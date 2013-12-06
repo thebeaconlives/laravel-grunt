@@ -1,9 +1,9 @@
-<?php namespace JasonNZ\LaravelGrunt\Grunt;
+<?php namespace TheBeaconLives\LaravelGrunt\Bower;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Config\Repository as Config;
 
-class Gruntfile {
+class Bowerfile {
 
 	/**
 	 * Filesystem Instance
@@ -20,7 +20,7 @@ class Gruntfile {
 	protected $config;
 
 	/**
-	 * Base path to where Gruntfile.js is to be stored
+	 * Base path to where bower.json is to be stored
 	 *
 	 * @var string
 	 */
@@ -31,7 +31,7 @@ class Gruntfile {
 	 * 
 	 * @var array
 	 */
-	protected $options = array('assets_path', 'publish_path', 'css_path', 'css_files', 'js_path', 'js_files', 'less_path', 'less_file', 'sass_path', 'sass_file', 'stylus_path', 'stylus_file');
+	protected $options = array('vendor_path', 'bower_dependencies');
 
 	/**
 	 * Constructor
@@ -44,54 +44,46 @@ class Gruntfile {
 	{
 		$this->filesystem = $filesystem;
 		$this->config = $config;
-		$this->path = $path ?: base_path();
+		$this->path = $path ?: $this->config->get('laravel-grunt::assets_path');
 	}
 
 	/**
-	 * Create a custom gruntfile.js base upon users requirements
+	 * Create a custom bower.json base upon users requirements
 	 * 
-	 * @param  array  $plugins
 	 * @return void
 	 */
-	public function create(array $plugins)
+	public function createBowerJsonFile()
 	{
-		// Get raw gruntfile.js template (without custom options)
-		$rawPath = __DIR__ . '/../templates/gruntfile.txt';
+		// Get raw bower.json template (without custom options)
+		$rawPath = __DIR__ . '/../templates/bowerjson.txt';
 		$rawContents = $this->filesystem->get($rawPath);
 
 		// Add user specified options
 		$customContent = $this->addOptions($rawContents, $this->options);
 
-		// Generate custom default task
-		$customContent = $this->addDefaultTask($customContent, $plugins);
+		// Write file
+		$this->writeFile($customContent, 'bower.json');
+	}
+
+	/**
+	 * Create a .bowerrc file
+	 * 
+	 * @return void
+	 */
+	public function createBowerRcFile()
+	{
+		$rawPath = __DIR__ . "/../templates/bowerrc.txt";
+		$rawContents = $this->filesystem->get($rawPath);
+
+		// Add user specified options
+		$customContent = $this->addOptions($rawContents, $this->options);
 
 		// Write file
-		$this->writeFile($customContent, $this->getPath());
+		$this->writeFile($customContent, '.bowerrc');
 	}
 
 	/**
-	 * Create default task line
-	 * 
-	 * @param string $content
-	 * @param array $plugins
-	 */
-	protected function addDefaultTask($content, $plugins)
-	{
-		$pattern = "/{{tasks}}/i";
-		$task = "";
-
-		foreach ($plugins as $plugin)
-		{
-			$task .= "'" . $plugin ."', ";
-		}
-
-		$content = preg_replace($pattern, $task, $content);
-
-		return $content;
-	}
-
-	/**
-	 * Add the custom options to gruntfile.js content
+	 * Add the custom options to bower.json content
 	 * 
 	 * @param string $content
 	 * @param array $plugins
@@ -103,10 +95,10 @@ class Gruntfile {
 			$pattern = '/{{' . $option . '}}/i';
 			$config = $this->config->get('laravel-grunt::' . $option);
 
-			// If config item is an array, built a string from it.
+			// If config item is an array, built a JSON style array string from it.
 			if(is_array($config))
 			{
-				$str = $this->buildStringFromArray($config);
+				$str = $this->buildJSONStringFromArray($config);
 				$content = preg_replace($pattern, $str, $content);
 			} else {
 				$content = preg_replace($pattern, $config, $content);
@@ -116,7 +108,7 @@ class Gruntfile {
 	}
 
 	/**
-	 * Write contents to the gruntfile.js
+	 * Write contents to the bower.json
 	 * 
 	 * @param  string $content
 	 * @param  string $path
@@ -128,13 +120,13 @@ class Gruntfile {
 	}
 
 	/**
-	 * Get the path to the Gruntfile.js
+	 * Get the path to the bower.json
 	 *
 	 * @return string
 	 */
 	protected function getPath()
 	{
-		return $this->path . '/gruntfile.js';
+		return $this->path . '/bower.json';
 	}
 
 	/**
@@ -143,10 +135,14 @@ class Gruntfile {
 	 * @param  array $array
 	 * @return string
 	 */
-	protected function buildStringFromArray($array)
+	protected function buildJSONStringFromArray($array)
 	{
-		$str = "'" . implode("','", $array) . "'";
-		return $str;
+		$str = '';
+		foreach ($array as $key => $value) {
+			$str .= '"' . $key . '": "' . $value .'",';
+		}
+
+		return rtrim($str, ",");
 	}
 
 }

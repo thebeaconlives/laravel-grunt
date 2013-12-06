@@ -1,4 +1,4 @@
-<?php namespace JasonNZ\LaravelGrunt\Commands;
+<?php namespace TheBeaconLives\LaravelGrunt\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
@@ -6,26 +6,31 @@ use Illuminate\Config\Repository as Config;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
-class GruntBuildCommand extends Command {
+class GruntWatchCommand extends Command {
 
 	/**
 	 * The console command name
 	 * 
 	 * @var string
 	 */
-	protected $name = 'grunt:build';
+	protected $name = 'grunt:watch';
 
 	/**
-	 * The consolse command description
+	 * The console command description
 	 * 
 	 * @var string
 	 */
-	protected $description = 'Run grunt';
+	protected $description = 'Run grunt watch';
 
+	/**
+	 * Fire the command
+	 * 
+	 * @return void
+	 */
 	public function fire()
 	{
-		$this->info('Running grunt...and rebuilding assets.');
-		shell_exec('grunt');
+		$this->info('Running grunt watch....');
+		shell_exec('grunt watch');
 	}
 
 }

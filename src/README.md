@@ -1,3 +1,15 @@
+This package was adapted from the jason-morton-nz/laravel-grunt package to add handlebars support and add global functions for including scripts and styles into your views
+
+### How to insert stylesheet and scripts
+
+`<?php grunt_stylesheet() ?>`
+
+Includes the main stylesheet specified in the css_target_file option in the config.  Pass in a filename as a parameter to link to another stylesheet in the css_path folder
+
+`<?php grunt_script() ?>`
+
+Includes the main javascript file specified in the js_target_file option in the config file.  Pass in a filename as a parameter to link to another script in the js_files path
+
 # Laravel 4 + Grunt Asset Workflow Package
 
 ## Contents

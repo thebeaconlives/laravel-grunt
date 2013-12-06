@@ -1,12 +1,11 @@
 {
-    "name": "jason-morton-nz/laravel-grunt",
-    "description": "Asset manangement package for Laravel 4 using the power of Grunt & Bower",
-    "homepage": "https://github.com/JasonMortonNZ/laravel-grunt",
+    "name": "thebeaconlives/laravel-grunt",
+    "description": "Asset manangement package for Laravel 4 using the power of Grunt, Bower, & Handlebars",
+    "homepage": "https://github.com/thebeaconlives/laravel-grunt",
     "version": "0.0.1",
     "authors": [
     {
-        "name": "JasonMortonNZ",
-        "homepage": "https://twitter.com/jasonmortonnz",
+        "name": "TheBeaconLives",
         "role": "Developer"
     }
     ],
@@ -19,8 +18,11 @@
     },
     "autoload": {
         "psr-0": {
-            "JasonNZ\\LaravelGrunt": "src/"
-        }
+            "TheBeaconLives\\LaravelGrunt": "src/"
+        },
+        "files": [
+            "src/TheBeaconLives/LaravelGrunt/globals.php"
+        ]
     },
     "minimum-stability": "dev"
 }

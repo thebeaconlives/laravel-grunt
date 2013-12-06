@@ -1,8 +1,8 @@
-<?php namespace JasonNZ\LaravelGrunt\Grunt;
+<?php namespace TheBeaconLives\LaravelGrunt\Grunt;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Config\Repository as Config;
-use JasonNZ\LaravelGrunt\GeneratorInterface;
+use TheBeaconLives\LaravelGrunt\GeneratorInterface;
 
 class GruntGenerator implements GeneratorInterface {
 

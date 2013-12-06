@@ -1,11 +1,11 @@
-<?php namespace JasonNZ\LaravelGrunt\Commands;
+<?php namespace TheBeaconLives\LaravelGrunt\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Config\Repository as Config;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
-use JasonNZ\LaravelGrunt\GeneratorInterface;
+use TheBeaconLives\LaravelGrunt\GeneratorInterface;
 
 class BowerSetupCommand extends Command {
 
