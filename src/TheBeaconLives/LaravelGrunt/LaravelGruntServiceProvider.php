@@ -159,7 +159,7 @@ class LaravelGruntServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('jason-morton-nz/laravel-grunt');
+		$this->package('thebeaconlives/laravel-grunt');
 	}
 
 	/**

@@ -24,6 +24,8 @@ return array(
 	|
 	*/
 	'publish_path' => 'public/assets',
+	'css_subfolder' => 'css',
+	'javascript_subfolder' => 'js',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -181,6 +183,7 @@ return array(
 		"bootstrap" => "~3"
 	),
 
-	"handlebars_templates" => "assets/templates"
+	"handlebars_templates" => "assets/templates",
+	"handlebars_namespace" => "Test",
 
 );
