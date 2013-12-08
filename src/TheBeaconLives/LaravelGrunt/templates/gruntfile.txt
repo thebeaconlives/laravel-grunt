@@ -14,7 +14,7 @@ module.exports = function (grunt) {
 			// Published assets path
 			publish: '{{publish_path}}',
 
-			// Files to be clean on rebuild
+			// Files to be cleaned on rebuild
 			clean: {
 				all: ['<%= options.css.concat %>', '<%= options.css.min %>', '<%= options.less.compiled %>', '<%= options.sass.compiled %>', '<%= options.stylus.compiled %>', '<%= options.js.min %>', '<%= options.js.concat %>', '<%= options.less.compiled %>'],
 				concat: ['<%= options.css.concat %>', '<%= options.js.concat %>']
@@ -30,7 +30,7 @@ module.exports = function (grunt) {
 
 			// JavaScript settings
 			js: {
-				base: '{{js_path}}',							// Base path to you JS folder
+				base: '{{js_path}}',							// Base path to your JS folder
 				files: [{{js_files}}],							// JavaScript files in order you'd like them concatenated and minified
 				concat: '<%= options.js.base %>/concat.js',		// Name of the concatenated JavaScript file
 				min: '<%= options.publish %>/{{javascript_subfolder}}/{{js_target_file}}'		// Name of the minified JavaScript file
@@ -69,7 +69,7 @@ module.exports = function (grunt) {
 			watch: {
 				files: ['<%= options.js.files %>', '<%= options.css.files %>', '<%= options.less.base %>/*.less',
 				 '<%= options.sass.base %>/*.sass', '<%= options.stylus.base %>/*.styl',
-				 '!<%= option.js.min %>', '!<%= options.less.compiled %>', '!<%= options.sass.compiled %>', '!<%= options.stylus.compiled %>']
+				 '!<%= options.js.min %>', '!<%= options.less.compiled %>', '!<%= options.sass.compiled %>', '!<%= options.stylus.compiled %>']
 			},
 			
 			handlebars: {
@@ -189,6 +189,7 @@ module.exports = function (grunt) {
 			files: '<%= options.watch.files %>',
 			tasks: ['default', 'notify:watch']
 		},
+
 		//Compile Handlebars templates
 		handlebars: {
 			compile: {
@@ -197,6 +198,7 @@ module.exports = function (grunt) {
 			options: {
 				namespace: '{{handlebars_namespace}}',
 				wrapped: true,
+				// Remove foldername and extension from template key
 				processName: function(filename) {
 					var parts = '<%= options.handlebars.template_folder %>'.split('*'),
 					    regex1 = new RegExp('^' + parts[0], 'gi'),
