@@ -16,7 +16,7 @@ class GruntGenerator implements GeneratorInterface {
 	/**
 	 * Gruntfile
 	 * 
-	 * @var JasonMortonNZ\LaravelGrunt\Gruntfile
+	 * @var TheBeaconLives\LaravelGrunt\Gruntfile
 	 */
 	protected $gruntfile;
 

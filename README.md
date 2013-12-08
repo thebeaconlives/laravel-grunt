@@ -97,7 +97,7 @@ The `bower:update` command update your bower dependecies to newer versions if av
 `php artisan bower:update`
 
 ## Issues - how to help?
-If you find any bugs, issues errors or believe we could add further useful functionality. Let us know via the github [issues page](https://github.com/JasonMortonNZ/laravel-grunt/issues) for this project here - [https://github.com/JasonMortonNZ/laravel-grunt/issues](https://github.com/JasonMortonNZ/laravel-grunt/issues).
+If you find any bugs, issues errors or believe we could add further useful functionality. Let us know via the github [issues page](https://github.com/thebeaconlives/laravel-grunt/issues) for this project here - [https://github.com/thebeaconlives/laravel-grunt/issues](https://github.com/thebeaconlives/laravel-grunt/issues).
 
 ### Contributors
 Here's a list of people who have helped by contributing to this project to date:

@@ -17,7 +17,7 @@ class BowerGenerator implements GeneratorInterface {
 	/**
 	 * GruntFile
 	 * 
-	 * @var JasonMortonNZ\LaravelGrunt\Bower\Bowerfile
+	 * @var TheBeaconLives\LaravelGrunt\Bower\Bowerfile
 	 */
 	protected $bowerFile;
 
