@@ -1,5 +1,7 @@
 This package was adapted from the jason-morton-nz/laravel-grunt package to add handlebars support and add global functions for including scripts and styles into your views
 
+######Note: I was not aware that you could link composer to a fork, so I changed the namespace. I have no intention to claim this as my own, but do not want to change it back at this time and I have changed the Gruntfile quite a bit.  If this is severely against etiquette, please let me know in an issue and I will rectify it.
+
 ### How to insert stylesheet and scripts
 
 `<?php grunt_stylesheet() ?>`
