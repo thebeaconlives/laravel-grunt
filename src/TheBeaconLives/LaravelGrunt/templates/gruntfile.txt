@@ -16,24 +16,28 @@ module.exports = function (grunt) {
 
 			// Files to be cleaned on rebuild
 			clean: {
-				all: ['<%= options.css.concat %>', '<%= options.css.min %>', '<%= options.less.compiled %>', '<%= options.sass.compiled %>', '<%= options.stylus.compiled %>', '<%= options.js.min %>', '<%= options.js.concat %>', '<%= options.less.compiled %>'],
+				all: ['<%= options.css.concat %>', '<%= options.css.min %>', '<%= options.less.compiled %>',
+					'<%= options.sass.compiled %>', '<%= options.stylus.compiled %>', '<%= options.js.min %>',
+					'<%= options.js.concat %>', '<%= options.less.compiled %>'],
 				concat: ['<%= options.css.concat %>', '<%= options.js.concat %>']
 			},
 
 			// CSS settings
 			css: {
 				base: '{{css_path}}',			 				// Base path to your CSS folder
-				files: [{{css_files}}],							// CSS files in order you'd like them concatenated and minified
+				files: [ {{css_files}} ],						// CSS files in order you'd like them concatenated and minified
 				concat: '<%= options.css.base %>/concat.css',	// Name of the concatenated CSS file
-				min: '<%= options.publish %>/{{css_subfolder}}/{{css_target_file}}'		// Name of the minified CSS file
+				publish: '<%= options.publish %>/{{css_subfolder}}',
+				min: '<%= options.css.publish %>/{{css_target_file}}'		// Name of the minified CSS file
 			},
 
 			// JavaScript settings
 			js: {
 				base: '{{js_path}}',							// Base path to your JS folder
-				files: [{{js_files}}],							// JavaScript files in order you'd like them concatenated and minified
+				files: [ {{js_files}} ],						// JavaScript files in order you'd like them concatenated and minified
 				concat: '<%= options.js.base %>/concat.js',		// Name of the concatenated JavaScript file
-				min: '<%= options.publish %>/{{javascript_subfolder}}/{{js_target_file}}'		// Name of the minified JavaScript file
+				publish: '<%= options.publish %>/{{javascript_subfolder}}',
+				min: '<%= options.js.publish %>/{{js_target_file}}'		// Name of the minified JavaScript file
 			},
 
 			// LESS Settings
@@ -65,15 +69,24 @@ module.exports = function (grunt) {
 				}
 			},
 
-			// Files and folders to watch for live reload and rebuild purposes
-			watch: {
-				files: ['<%= options.js.files %>', '<%= options.css.files %>', '<%= options.less.base %>/*.less',
-				 '<%= options.sass.base %>/*.sass', '<%= options.stylus.base %>/*.styl',
-				 '!<%= options.js.min %>', '!<%= options.less.compiled %>', '!<%= options.sass.compiled %>', '!<%= options.stylus.compiled %>']
-			},
+			// // Files and folders to watch for live reload and rebuild purposes
+			// watch: {
+			// 	files: ['<%= options.js.files %>', '<%= options.css.files %>', '<%= options.less.base %>/*.less',
+			// 	 '<%= options.sass.base %>/*.sass', '<%= options.sass.base %>/*.scss',
+			// 	 '<%= options.stylus.base %>/*.styl', '<%= options.handlebars.template_folder %>/*/*.hbs',
+			// 	 '!<%= options.js.min %>', '!<%= options.less.compiled %>', '!<%= options.sass.compiled %>',
+			// 	 '!<%= options.stylus.compiled %>']
+			// },
 			
 			handlebars: {
-				template_folder: '{{handlebars_templates}}'
+				template_folder: '{{handlebars_folder}}',
+				namespace: '{{handlebars_namespace}}',
+				filename: '{{handlebars_filename}}'
+			},
+
+			images: {
+				src_path: '<%= options.publish %>/{{image_folder}}',
+				publish_path: '<%= options.publish %>/{{image_folder}}'
 			}
 		},
 
@@ -84,6 +97,17 @@ module.exports = function (grunt) {
 			},
 			concat: {
 				src: '<%= options.clean.concat %>'
+			}
+		},
+
+		copy: {
+			dev: {
+				css: {
+					files: [{expand: true, src: ['<%= options.css.base %>/**/*.css'], dest: '<%= options.css.publish %>/'},]
+				},
+				js: {
+					files: [{expand: true, src: ['<%= options.js.base %>/**/*.js'], dest: '<%= options.js.publish %>/'},]
+				}
 			}
 		},
 
@@ -183,20 +207,44 @@ module.exports = function (grunt) {
 
 		// Watch for files and folder changes
 		watch: {
-			options: {
-				livereload: true
+			scss: {
+				files: ['<%= options.sass.base %>/**/*.scss'],
+				tasks: 'sass'
 			},
-			files: '<%= options.watch.files %>',
-			tasks: ['default', 'notify:watch']
+			js: {
+				files: ['<%= options.js.base %>/**/*.js'],
+				tasks: 'jshint'
+			},
+			handlebars: {
+				files: ['<%= options.handlebars.template_folder %>/**/*.hbs'],
+				tasks: 'handlebars'
+			},
+			css: {
+				files: ['<%= options.css.base %>/**/*.css'],
+				tasks: 'newer:copy:css'
+			},
+			js: {
+				files: ['<%= options.js.base %>/**/*.js'],
+				tasks: 'newer:copy:js'
+			},
+			livereload: {
+				options: {
+				  livereload: true
+				},
+				files: [
+				  '<%= options.css.publish %>/{,*/}*.css',
+				  '<%= options.js.publish %>/{,*/}*.js'
+				]
+			},
 		},
 
 		//Compile Handlebars templates
 		handlebars: {
 			compile: {
-				'<%= options.js.files %>/compiled-templates.js' : ['<%= options.handlebars.template_folder %>/*.hbs']
+				'<%= options.js.publish %>/<%= options.handlebars.filename %>' : ['<%= options.handlebars.template_folder %>/*.hbs']
 			},
 			options: {
-				namespace: '{{handlebars_namespace}}',
+				namespace: '<%= options.handlebars.namespace %>',
 				wrapped: true,
 				// Remove foldername and extension from template key
 				processName: function(filename) {
@@ -206,15 +254,24 @@ module.exports = function (grunt) {
 					return filename.replace(regex1).replace(regex2);
 				}
 			}
+		},
+
+		imagemin: {
+		    dynamic: {                         // Another target
+				files: [{
+					expand: true,                  // Enable dynamic expansion
+					src: ['<%= options.images.src_path %>/**/*.{png,jpg,gif}'],   // Actual patterns to match
+					dest: '<%= options.images.publish_path %>/'                  // Destination path prefix
+				}]
+		    }
 		}
-
-
 	});
 
 	// Load npm tasks
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-compress');
 	grunt.loadNpmTasks('grunt-contrib-concat');
+	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-less');
@@ -225,7 +282,10 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-notify');
 	grunt.loadNpmTasks('grunt-contrib-handlebars');
+	grunt.loadNpmTasks('grunt-contrib-imagemin');
+	grunt.loadNpmTasks('grunt-newer');
 
 	// Register tasks
-	grunt.registerTask('default', ['clean:all', {{tasks}} 'concat:css', 'concat:js', 'cssmin', 'uglify', 'clean:concat']); // Default task
+	grunt.registerTask('dev', [{{tasks}} 'newer:copy:dev:js', 'newer:copy:dev:css']);
+	grunt.registerTask('default', ['clean:all', {{tasks}} 'concat:css', 'concat:js', 'cssmin', 'uglify', 'clean:concat', 'imagemin']); // Default task
 }

@@ -24,8 +24,13 @@ return array(
 	|
 	*/
 	'publish_path' => 'public/assets',
+
+	/*
+	| Name of subfolders within the assets folder
+	*/
 	'css_subfolder' => 'css',
 	'javascript_subfolder' => 'js',
+	'image_folder' => 'img',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -46,11 +51,14 @@ return array(
 	| This is where you can specify a custom order in which
 	| CSS files will be concatenated, compiled and minified.
 	| We've set a sensible default, but feel free to update it.
+	| 
+	| If you are compiling LESS or SASS files, add the compiled names
+	| to this array.
 	|
 	*/
 	'css_files' => array(
-		'assets/css/style_one.css',
-		'assets/css/style_two.css'
+		'style_one.css',
+		'style_two.css'
 	),
 
 	'css_target_file' => 'styles.min.css',
@@ -77,11 +85,36 @@ return array(
 	|
 	*/
 	'js_files' => array(
-		'assets/js/script_one.js',
-		'assets/js/script_two.js'
+		'compiled-templates.js'
+		'script_one.js',
+		'script_two.js'
 	),
 
 	'js_target_file' => 'scripts.min.js',
+
+	/*
+	|--------------------------------------------------------------------------
+	| Targets
+	|--------------------------------------------------------------------------
+	|
+	| Here you can define groups of assets to include with the global functions
+	| It is recommended to override these values per environment. The below is
+	| just an example.
+	|
+	| e.g. grunt_stylesheet('header-css');
+	| 	outputs
+	| <link rel="stylesheet" href="assets/css/header1.css" />
+	| <link rel="stylesheet" href="assets/css/header2.css" />
+	|
+	*/
+	'targets' => array(
+		'header-css' => array(
+			'header1.css', 'header2.css'
+		),
+		'footer-js' => array(
+			'footer-main.js', 'footer2.js'
+		),
+	),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -183,7 +216,8 @@ return array(
 		"bootstrap" => "~3"
 	),
 
-	"handlebars_templates" => "assets/templates",
+	"handlebars_folder" => "assets/templates",
 	"handlebars_namespace" => "Test",
+	"handlebars_filename" => 'compiled-templates.js',
 
 );
