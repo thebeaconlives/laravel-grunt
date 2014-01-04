@@ -85,7 +85,6 @@ return array(
 	|
 	*/
 	'js_files' => array(
-		'compiled-templates.js'
 		'script_one.js',
 		'script_two.js'
 	),
