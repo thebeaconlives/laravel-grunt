@@ -39,6 +39,7 @@ if ( ! function_exists('grunt_stylesheet'))
         }
 
         $path = Config::get('laravel-grunt::publish_path') . "/" . Config::get('laravel-grunt::css_subfolder');
+        $path = str_replace($publicDirName, '', $path);
 
         // Build output
         $output = '';
@@ -63,6 +64,7 @@ if ( ! function_exists('grunt_script'))
      */
     function grunt_script($target = null)
     {
+        $publicDirName = basename(public_path());
         // Use default list or target list if specified
         if (is_null($target))
         {
@@ -88,6 +90,7 @@ if ( ! function_exists('grunt_script'))
         }
 
         $path = Config::get('laravel-grunt::publish_path') . "/" . Config::get('laravel-grunt::javascript_subfolder');
+        $path = str_replace($publicDirName, '', $path);
 
         // Build output
         $output = '';
