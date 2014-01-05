@@ -24,7 +24,7 @@ module.exports = function (grunt) {
 
 			// CSS settings
 			css: {
-				base: '{{css_path}}',			 				// Base path to your CSS folder
+				base: '<%= options.base %>/{{css_path}}',			 				// Base path to your CSS folder
 				files: [ {{css_files}} ],						// CSS files in order you'd like them concatenated and minified
 				concat: '<%= options.css.base %>/concat.css',	// Name of the concatenated CSS file
 				publish: '<%= options.publish %>/{{css_subfolder}}',
@@ -33,7 +33,7 @@ module.exports = function (grunt) {
 
 			// JavaScript settings
 			js: {
-				base: '{{js_path}}',							// Base path to your JS folder
+				base: '<%= options.base %>/{{js_path}}',							// Base path to your JS folder
 				files: [ {{js_files}} ],						// JavaScript files in order you'd like them concatenated and minified
 				concat: '<%= options.js.base %>/concat.js',		// Name of the concatenated JavaScript file
 				publish: '<%= options.publish %>/{{javascript_subfolder}}',
@@ -42,21 +42,21 @@ module.exports = function (grunt) {
 
 			// LESS Settings
 			less: {
-				base: '{{less_path}}',							// Base path to you LESS folder
+				base: '<%= options.base %>/{{less_path}}',							// Base path to you LESS folder
 				file: '{{less_file}}',							// LESS file (ideally, one file which contains imports)
 				compiled: '<%= options.css.base %>/less.css'	// Name of the compiled LESS file
 			},
 
 			// SASS Settings
 			sass: {
-				base: '{{sass_path}}',							// Base path to you SASS folder
+				base: '<%= options.base %>/{{sass_path}}',							// Base path to you SASS folder
 				file: '{{sass_file}}',							// SASS file (ideally, one file which contains imports)
 				compiled: '<%= options.css.base %>/sass.css'	// Name of the compiled SASS file
 			},
 
 			// STYLUS Settings
 			stylus: {
-				base: '{{stylus_path}}',							// Base path to you STYLUS folder
+				base: '<%= options.base %>/{{stylus_path}}',							// Base path to you STYLUS folder
 				file: '{{stylus_file}}',							// STYLUS file (ideally, one file which contains imports)
 				compiled: '<%= options.css.base %>/stylus.css'		// Name of the compiled STYLUS file
 			},
