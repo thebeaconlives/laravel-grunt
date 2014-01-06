@@ -101,13 +101,21 @@ module.exports = function (grunt) {
 		},
 
 		copy: {
-			dev: {
-				css: {
-					files: [{expand: true, src: ['<%= options.css.base %>/**/*.css'], dest: '<%= options.css.publish %>/'},]
-				},
-				js: {
-					files: [{expand: true, src: ['<%= options.js.base %>/**/*.js'], dest: '<%= options.js.publish %>/'},]
-				}
+			css: {
+				files: [{
+					expand: true,
+					cwd: '<%= options.css.base %>/',
+					src: ['**/*.css'],
+					dest: '<%= options.css.publish %>/'
+				}]
+			},
+			js: {
+				files: [{
+					expand: true,
+					cwd: '<%= options.js.base %>/',
+					src: ['**/*.js'],
+					dest: '<%= options.js.publish %>/'
+				}]
 			}
 		},
 
@@ -286,6 +294,6 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-newer');
 
 	// Register tasks
-	grunt.registerTask('dev', [{{tasks}} 'copy:dev:js', 'copy:dev:css']);
+	grunt.registerTask('dev', [{{tasks}} 'copy:js', 'copy:css']);
 	grunt.registerTask('default', ['clean:all', {{tasks}} 'concat:css', 'concat:js', 'cssmin', 'uglify', 'clean:concat', 'imagemin']); // Default task
 }
