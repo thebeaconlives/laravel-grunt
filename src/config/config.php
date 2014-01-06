@@ -138,7 +138,7 @@ return array(
 	| Note: you LESS will be compiled into a file named "less.css" in the
 	| specified "css_path" above. So be sure to add it into your "css_files" array
 	*/
-	'less_file' => 'assets/less/main.less',
+	'less_file' => 'main.less',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -161,7 +161,7 @@ return array(
 	| We've set a sensible default, but feel free to update it.
 	|
 	*/
-	'sass_file' => 'assets/sass/main.sass',
+	'sass_file' => 'main.sass',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -184,7 +184,7 @@ return array(
 	| We've set a sensible default, but feel free to update it.
 	|
 	*/
-	'stylus_file' => 'assets/stylus/main.stylus',
+	'stylus_file' => 'main.stylus',
 
 	/*
 	|--------------------------------------------------------------------------

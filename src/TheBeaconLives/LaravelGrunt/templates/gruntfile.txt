@@ -161,7 +161,7 @@ module.exports = function (grunt) {
 					ieCompat: true
 				},
 				files: {
-					'<%= options.less.compiled %>': '<%= options.less.file %>'
+					'<%= options.less.compiled %>': '<%= options.less.base %>/<%= options.less.file %>'
 				}
 			}
 		},
@@ -170,7 +170,7 @@ module.exports = function (grunt) {
 		sass: {
 		    main: {
 		        files: {
-		        	'<%= options.sass.compiled %>': '<%= options.sass.file %>'
+		        	'<%= options.sass.compiled %>': '<%= options.sass.base %>/<%= options.sass.file %>'
 		        }
 		    }
 		},
@@ -179,7 +179,7 @@ module.exports = function (grunt) {
 		stylus: {
 		    main: {
 		        files: {
-		        	'<%= options.stylus.compiled %>': '<%= options.stylus.file %>'
+		        	'<%= options.stylus.compiled %>': '<%= options.stylus.base %>/<%= options.stylus.file %>'
 		        }
 		    }
 		},
