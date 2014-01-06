@@ -286,6 +286,6 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-newer');
 
 	// Register tasks
-	grunt.registerTask('dev', [{{tasks}} 'newer:copy:dev:js', 'newer:copy:dev:css']);
+	grunt.registerTask('dev', [{{tasks}} 'copy:dev:js', 'copy:dev:css']);
 	grunt.registerTask('default', ['clean:all', {{tasks}} 'concat:css', 'concat:js', 'cssmin', 'uglify', 'clean:concat', 'imagemin']); // Default task
 }
